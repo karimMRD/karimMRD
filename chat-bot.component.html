@@ -1,0 +1,61 @@
+ <div id="chat-circle" class="btn btn-raised" (click)="toggle()">
+ 	<div id="chat-overlay"></div>
+ 	<i class="far fa-comment-alt"></i>
+ </div>
+ <div class="circle" style="animation-delay: -3s"></div>
+ <div class="circle" style="animation-delay: -2s"></div>
+ <div class="circle" style="animation-delay: -1s"></div>
+ <div class="circle" style="animation-delay: 0s"></div>
+
+
+ <div class="chat-box" [hidden]="!visible">
+ 	<div class="chat-box-header">
+ 		ChatBot
+ 		<span class="chat-box-toggle" (click)="toggle()"><i class="fas fa-window-minimize"></i></span>
+ 	</div>
+ 	<div class="chat-box-body">
+ 		<div class="chat-box-overlay">
+ 		</div>
+ 		<div class="chat-logs">
+			<div class="chatform">
+ 			<div class="chatlist" #chatlist >
+ 				<ul class="list-group">
+ 					<li class="list-group-item" *ngFor="let msg of messages">
+						 
+						<div >
+							<td >
+								<img  [src]="msg.avatar" class="avatar">
+							</td>
+							<td>
+								<div class="message" >
+								{{msg.content}}
+								   <!-- <div class="timeform">
+									   <i class="fa fa-clock-o" aria-hidden="true"></i> <span class="timestamp">le
+										   {{message.timestamp | date : 'dd/MM/yyyy à hh:mm:ss' }}</span>
+								   </div> -->
+								</div>
+								
+							</td>
+						 </div>
+
+ 					</li>
+					 	<!--  -->
+						 <div class="lds {{messageUser}}" [hidden]="!visible1" >
+							
+							<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
+						</div>
+						<!--  -->
+ 				</ul>
+ 			</div>
+ 		</div>
+ 		</div>
+ 		<!--chat-log -->
+ 	</div>
+ 	<div class="chat-input">
+ 		<form>
+ 			<input type="text" id="chat-input" placeholder="Saisir votre message..." name="content" [(ngModel)]="formValue" (keyup.enter)="sendMessage()" autocomplete="off"/>
+ 			<button type="button" class="chat-submit" (click)="sendMessage()" [disabled]=" !formValue "><i class="fas fa-paper-plane"></i></button>
+ 		</form>
+ 	</div>
+ </div>
